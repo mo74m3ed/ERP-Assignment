@@ -45,9 +45,23 @@ class LocaleHelperTest extends TestCase
         usort($names, fn (string $a, string $b) => LocaleHelper::localeCompare($a, $b));
 
         // 'Ábaco' and 'árbol' must appear before 'banana', not after 'Zorro'
-        $this->assertLessThan(array_search('banana', $names), array_search('Ábaco', $names));
-        $this->assertLessThan(array_search('banana', $names), array_search('árbol', $names));
-        $this->assertLessThan(array_search('Zorro', $names), array_search('Ñandú', $names));
-        $this->assertLessThan(array_search('Zorro', $names), array_search('Úlcera', $names));
+        $posAbaco = array_search('Ábaco', $names, true);
+        $posArbol = array_search('árbol', $names, true);
+        $posBanana = array_search('banana', $names, true);
+        $posNandu = array_search('Ñandú', $names, true);
+        $posUlcera = array_search('Úlcera', $names, true);
+        $posZorro = array_search('Zorro', $names, true);
+
+        $this->assertIsInt($posAbaco);
+        $this->assertIsInt($posArbol);
+        $this->assertIsInt($posBanana);
+        $this->assertIsInt($posNandu);
+        $this->assertIsInt($posUlcera);
+        $this->assertIsInt($posZorro);
+
+        $this->assertLessThan($posBanana, $posAbaco);
+        $this->assertLessThan($posBanana, $posArbol);
+        $this->assertLessThan($posZorro, $posNandu);
+        $this->assertLessThan($posZorro, $posUlcera);
     }
 }
