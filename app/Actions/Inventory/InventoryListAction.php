@@ -14,15 +14,17 @@ class InventoryListAction
         // paginating. Sorting after Eloquent::paginate() would only order each
         // page in isolation, producing inconsistent cross-page ordering.
         // Mirrors the fix in FreshRSS/FreshRSS#8985.
-        $all = Inventory::all()->all();
-        uasort($all, static fn (Inventory $a, Inventory $b): int => LocaleHelper::localeCompare($a->name, $b->name));
-        $sorted = array_values($all);
+        $collection = Inventory::all();
+        $items = $collection->all(); // plain array for uasort
+        uasort($items, static fn (Inventory $a, Inventory $b): int => LocaleHelper::localeCompare($a->name, $b->name));
+        $sorted = array_values($items);
 
-        $perPage = (int) (request()->input('per_page', 15));
+        // Clamp per_page to a safe range (1–100) to prevent memory exhaustion.
+        $perPage = max(1, min(100, (int) request()->input('per_page', 15)));
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $items = array_slice($sorted, ($currentPage - 1) * $perPage, $perPage);
+        $pageItems = array_slice($sorted, ($currentPage - 1) * $perPage, $perPage);
 
-        return new LengthAwarePaginator($items, count($sorted), $perPage, $currentPage, [
+        return new LengthAwarePaginator($pageItems, count($sorted), $perPage, $currentPage, [
             'path' => LengthAwarePaginator::resolveCurrentPath(),
         ]);
     }
