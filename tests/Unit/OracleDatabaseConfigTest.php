@@ -16,6 +16,9 @@ class OracleDatabaseConfigTest extends TestCase
         $this->assertEquals(env('ORACLE_DB_PORT', '1521'), $config['port']);
         $this->assertEquals(env('ORACLE_DB_DATABASE', 'xe'), $config['database']);
         $this->assertEquals(env('ORACLE_DB_USERNAME', 'system'), $config['username']);
+        $this->assertEquals(env('ORACLE_DB_PASSWORD', ''), $config['password']);
         $this->assertEquals(env('ORACLE_DB_CHARSET', 'AL32UTF8'), $config['charset']);
+        $this->assertEquals(env('ORACLE_DB_PREFIX', ''), $config['prefix']);
+        $this->assertTrue($config['prefix_indexes']);
     }
 }
