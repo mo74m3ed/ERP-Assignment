@@ -12,10 +12,10 @@ class OracleDatabaseConfigTest extends TestCase
 
         $this->assertNotNull($config);
         $this->assertEquals('oracle', $config['driver']);
-        $this->assertEquals('127.0.0.1', $config['host']);
-        $this->assertEquals('1521', $config['port']);
-        $this->assertEquals(env('DB_DATABASE', 'xe'), $config['database']);
-        $this->assertEquals(env('DB_USERNAME', 'system'), $config['username']);
-        $this->assertEquals(env('DB_CHARSET', 'AL32UTF8'), $config['charset']);
+        $this->assertEquals(env('ORACLE_DB_HOST', '127.0.0.1'), $config['host']);
+        $this->assertEquals(env('ORACLE_DB_PORT', '1521'), $config['port']);
+        $this->assertEquals(env('ORACLE_DB_DATABASE', 'xe'), $config['database']);
+        $this->assertEquals(env('ORACLE_DB_USERNAME', 'system'), $config['username']);
+        $this->assertEquals(env('ORACLE_DB_CHARSET', 'AL32UTF8'), $config['charset']);
     }
 }

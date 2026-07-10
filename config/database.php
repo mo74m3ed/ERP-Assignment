@@ -95,13 +95,13 @@ return [
 
         'oracle' => [
             'driver' => 'oracle',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '1521'),
-            'database' => env('DB_DATABASE', 'xe'),
-            'username' => env('DB_USERNAME', 'system'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => env('DB_CHARSET', 'AL32UTF8'),
-            'prefix' => env('DB_PREFIX', ''),
+            'host' => env('ORACLE_DB_HOST', '127.0.0.1'),
+            'port' => env('ORACLE_DB_PORT', '1521'),
+            'database' => env('ORACLE_DB_DATABASE', 'xe'),
+            'username' => env('ORACLE_DB_USERNAME', 'system'),
+            'password' => env('ORACLE_DB_PASSWORD', ''),
+            'charset' => env('ORACLE_DB_CHARSET', 'AL32UTF8'),
+            'prefix' => env('ORACLE_DB_PREFIX', ''),
             'prefix_indexes' => true,
         ],
 
