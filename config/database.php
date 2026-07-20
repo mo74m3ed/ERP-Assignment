@@ -93,6 +93,18 @@ return [
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
+        'oracle' => [
+            'driver' => 'oracle',
+            'host' => env('ORACLE_DB_HOST', '127.0.0.1'),
+            'port' => env('ORACLE_DB_PORT', '1521'),
+            'database' => env('ORACLE_DB_DATABASE', 'xe'),
+            'username' => env('ORACLE_DB_USERNAME', 'system'),
+            'password' => env('ORACLE_DB_PASSWORD', ''),
+            'charset' => env('ORACLE_DB_CHARSET', 'AL32UTF8'),
+            'prefix' => env('ORACLE_DB_PREFIX', ''),
+            'prefix_indexes' => true,
+        ],
+
     ],
 
     /*
