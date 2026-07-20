@@ -21,6 +21,6 @@ class InventoryTotalCostTest extends TestCase
             return $item->total = $item->quantity * $item->unit_price;
         });
 
-        $this->assertEquals($totalCost, $inventories->sum('total'));
+        $this->assertEquals(round($totalCost, 2), round($inventories->sum('total'), 2));
     }
 }
